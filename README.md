@@ -21,25 +21,6 @@ Time tracking is essential for managing your work hours efficiently. This softwa
 - User-friendly interface for easy data entry and retrieval.
 
 ## Installation
-Be sure to have these installed in your PC beforehand : 
-1. Xampp-8.2.4-0
-2. Composer v2.6.5
-3. Laravel 5.1.3
-
-To use the Time Records Software, follow these steps:
-
-1. Download the repository to your local machine.
-2. Extract and move it to this path : "C:\xampp\htdocs".
-3. Start Xampp server and start Apache and mysql module.
-4. Open the project in your IDEA and run the terminal.
-5. Create a database according to the database name from .env file.
-6. Run this command for table migration from terminal:
-    ```shell
-    php artisan migrate:fresh
-7. Write this command for running the software from terminal:
-    ```shell
-    php artisan serve
-8. Go the following link from the terminal to Enter into the software GUI
 
 ## Usage
 
@@ -52,5 +33,3 @@ To use the Time Records Software, follow these steps:
 4. Generate reports by clicking the time "Download Report" button.
 
 5. The reports will provide you with an overview of your work hours during the selected period.
-
-
