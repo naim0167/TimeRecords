@@ -8,8 +8,6 @@ Time Record Software is a tool that allows you to record and manage your work ho
 - [Features](#features)
 - [Installation](#installation)
 - [Usage](#usage)
-- [Generating Reports](#generating-reports)
-- [Contributing](#contributing)
 - [License](#license)
 
 ## Introduction
@@ -43,7 +41,8 @@ To use the Time Records Software, follow these steps:
     php artisan serve
 8. Go the following link from the terminal to Enter into the software GUI
 
-Usage
+## Usage
+
 1. Launch the Time Records Software.
 
 2. Use the user-friendly interface to input your start and end times for different work activities.
