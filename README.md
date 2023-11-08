@@ -44,14 +44,14 @@ To use the Time Records Software, follow these steps:
 8. Go the following link from the terminal to Enter into the software GUI
 
 Usage
-Launch the Time Tracking Software.
+1. Launch the Time Records Software.
 
-1. Use the user-friendly interface to input your start and end times for different work activities.
+2. Use the user-friendly interface to input your start and end times for different work activities.
 
-2. Save the entries, and the software will automatically calculate the total hours for each day.
+3. Save the entries, and the software will automatically calculate the total hours for each day.
 
-3. Generate reports by clicking the time "Download Report" button.
+4. Generate reports by clicking the time "Download Report" button.
 
-4. The reports will provide you with an overview of your work hours during the selected period.
+5. The reports will provide you with an overview of your work hours during the selected period.
 
 
