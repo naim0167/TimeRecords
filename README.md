@@ -35,10 +35,10 @@ To use the Time Records Software, follow these steps:
 3. Start Xampp server and start Apache and mysql module.
 4. Open the project in your IDEA and run the terminal.
 5. Create a database according to the database name from .env file.
-6. Run this command for table migration :
+6. Run this command for table migration from terminal:
     ```shell
     php artisan migrate:fresh
-7. Write this command for running the software:
+7. Write this command for running the software from terminal:
     ```shell
     php artisan serve
 8. Go the following link from the terminal to Enter into the software GUI
