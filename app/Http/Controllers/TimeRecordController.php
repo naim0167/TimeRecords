@@ -30,7 +30,7 @@ class TimeRecordController extends Controller
         $validatedData = $request->validate([
             'project_id' => ['required', 'integer'],
             'start_time' =>  ['required', 'date_format:Y-m-d\TH:i'],
-            'end_time' => ['required', 'date_format:Y-m-d\TH:i'],
+            'end_time' => ['required', 'date_format:Y-m-d\TH:i', 'after_or_equal:start_time'],
         ], $messages);
 
         $validWorkTime = TimeRecord::query()
@@ -64,7 +64,7 @@ class TimeRecordController extends Controller
         $validatedData = $request->validate([
             'project_id' => ['required', 'integer'],
             'start_time' =>  ['required', 'date_format:Y-m-d\TH:i'],
-            'end_time' => ['required', 'date_format:Y-m-d\TH:i'],
+            'end_time' => ['required', 'date_format:Y-m-d\TH:i', 'after_or_equal:start_time'],
         ], $messages);
 
         $validWorkTime = TimeRecord::query()
