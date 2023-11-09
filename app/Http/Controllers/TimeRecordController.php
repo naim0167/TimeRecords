@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Project;
 use App\Models\TimeRecord;
+use App\Rules\OverlappingTimeRecords;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
 
 class TimeRecordController extends Controller
 {
@@ -15,7 +18,7 @@ class TimeRecordController extends Controller
 
     public function create(){
         if(empty(Project::count())){
-            return back()->withSuccess('Please add a project first.');
+            return back()->withError('Please add a project first.');
         }
         return view('timerecords.create', ['projects'=>Project::get()]);
     }
@@ -24,12 +27,19 @@ class TimeRecordController extends Controller
         $messages = [
             'project_id' => 'Please select a project',
         ];
-
         $validatedData = $request->validate([
-            'project_id' => 'required|integer',
-            'start_time' => 'required|date_format:Y-m-d\TH:i',
-            'end_time' => 'required|date_format:Y-m-d\TH:i',
+            'project_id' => ['required', 'integer'],
+            'start_time' =>  ['required', 'date_format:Y-m-d\TH:i'],
+            'end_time' => ['required', 'date_format:Y-m-d\TH:i'],
         ], $messages);
+
+        $validWorkTime = TimeRecord::query()
+        ->whereRaw('? between start_time and end_time', [$request->start_time])
+        ->count();
+
+        if ($validWorkTime > 0) {
+            return back()->withError('An entry already exist between this work hours.');
+        }
 
         $timeRecord = new TimeRecord;
         $timeRecord->fill($validatedData);
@@ -51,10 +61,18 @@ class TimeRecordController extends Controller
         ];
 
         $validatedData = $request->validate([
-            'project_id' => 'required|integer',
-            'start_time' => 'required|date_format:Y-m-d\TH:i',
-            'end_time' => 'required|date_format:Y-m-d\TH:i',
+            'project_id' => ['required', 'integer'],
+            'start_time' =>  ['required', 'date_format:Y-m-d\TH:i'],
+            'end_time' => ['required', 'date_format:Y-m-d\TH:i'],
         ], $messages);
+
+        $validWorkTime = TimeRecord::query()
+        ->whereRaw('? between start_time and end_time', [$request->start_time])
+        ->count();
+
+        if ($validWorkTime > 0) {
+            return back()->withError('An entry already exist between this work hours..');
+        }
 
         $timeRecord = TimeRecord::where('id', $id)->first();
         $timeRecord->fill($validatedData);
@@ -73,6 +91,5 @@ class TimeRecordController extends Controller
         $timeRecord->delete();
         return back()->withSuccess('Entry Deleted successfully.');
     }
-
 
 }

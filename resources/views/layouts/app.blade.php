@@ -30,6 +30,12 @@
         </div>
     @endif
 
+    @if($message = Session::get('error'))
+        <div class="alert alert-danger alert-block">
+            <strong>{{ $message }} </strong>
+        </div>  
+    @endif
+
     @yield('main')
     
 </body>

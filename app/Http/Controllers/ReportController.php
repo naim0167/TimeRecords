@@ -11,8 +11,7 @@ class ReportController extends Controller
     public function index(){
         $timeRecords = TimeRecord::select(
             'project_id', 
-            DB::raw('SUM(TIMESTAMPDIFF(minute, start_time, end_time)) as minute')
-        )
+            DB::raw('SUM(TIMESTAMPDIFF(minute, start_time, end_time)) as minute'))
             ->groupBy('project_id')
             ->get();
         

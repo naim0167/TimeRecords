@@ -19,7 +19,7 @@ class ProjectController extends Controller
     public function store(Request $request){
         
         $validateData = $request->validate([
-            'name' => 'required|string',
+            'name' =>  ['required', 'string'],
             'workload' => 'required'
         ]);
 
