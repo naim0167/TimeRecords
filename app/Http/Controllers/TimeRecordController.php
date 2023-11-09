@@ -33,12 +33,10 @@ class TimeRecordController extends Controller
             'end_time' => ['required', 'date_format:Y-m-d\TH:i'],
         ], $messages);
 
-        $validWorkTime = TimeRecord::query()
-        ->whereRaw('? between start_time and end_time', [$request->start_time])
-        ->count();
+        $validWorkTime = $this->validateWorkTime($request->start_time);
 
         if ($validWorkTime > 0) {
-            return back()->withError('An entry already exist between this work hours.');
+            return back()->withError('An entry already exist between this work hours..');
         }
 
         $timeRecord = new TimeRecord;
@@ -66,9 +64,7 @@ class TimeRecordController extends Controller
             'end_time' => ['required', 'date_format:Y-m-d\TH:i'],
         ], $messages);
 
-        $validWorkTime = TimeRecord::query()
-        ->whereRaw('? between start_time and end_time', [$request->start_time])
-        ->count();
+        $validWorkTime = $this->validateWorkTime($request->start_time);
 
         if ($validWorkTime > 0) {
             return back()->withError('An entry already exist between this work hours..');
@@ -92,4 +88,12 @@ class TimeRecordController extends Controller
         return back()->withSuccess('Entry Deleted successfully.');
     }
 
+    private function validateWorkTime($start_time){
+        $validWorkTime = TimeRecord::query()
+        ->whereRaw('? between start_time and end_time', [$start_time])
+        ->count();
+
+        return $validWorkTime;
+
+    }
 }
