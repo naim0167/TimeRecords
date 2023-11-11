@@ -41,7 +41,6 @@ class TimeRecordController extends Controller
             return back()->withError('An entry already exist between this hours.');
         }
 
-        $this->validateStartTime($request->start_time);
         $timeRecord = new TimeRecord;
         $timeRecord->fill($validatedData);
         $timeRecord->save();
