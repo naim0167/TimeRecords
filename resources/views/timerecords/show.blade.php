@@ -2,7 +2,7 @@
 @section('main')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-sm-4 mt-2">
+        <div class="col-sm-6 mt-2">
             <div class="card p-4 mt-5">
                 <p> Project Name: <b>{{$time_record->project->name}}</b></p>
                 <p> Start Time: <b>{{$time_record->start_time}}</b></p>
