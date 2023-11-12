@@ -55,3 +55,10 @@ Time tracking is essential for managing your work hours efficiently. This softwa
 4. Generate reports by clicking the time "Download Report" button.
 
 5. The reports will provide you with an overview of your work hours during the selected period.
+
+
+## License
+
+This project is licensed under the GNU General Public License, version 3.0. See the [LICENSE](LICENSE) file for details.
+
+For a full copy of the license, please visit [GNU GPL-3.0](https://www.gnu.org/licenses/gpl-3.0.html).
