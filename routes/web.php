@@ -48,6 +48,8 @@ Route::middleware('auth')->group(function () {
      * Reports Routes
      */
     Route::get('/reports', [ReportController::class, 'index'])->name('reports');
+    Route::get('/reports/person', [ReportController::class, 'person']);
+    Route::get('/reports/person/{id}/show', [ReportController::class, 'personReport']);
     Route::get('/reports/daily', [ReportController::class, 'daily']);
     Route::get('/reports/monthly', [ReportController::class, 'monthly']);
     Route::get('/reports/download', [ReportController::class, 'download']);

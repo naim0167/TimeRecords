@@ -28,7 +28,22 @@ class ReportController extends Controller
         });
         return view('reports.index', ['time_records'=>$timeRecords]);
     }    
-    
+
+    public function person(){
+        $persons = DB::table('time_records')
+            ->select('time_records.user_id', 'users.name')
+            ->join('users', 'time_records.user_id', '=', 'users.id')
+            ->distinct()
+            ->get();
+
+        return view('reports.person', ['persons'=>$persons]);
+    }    
+
+    public function personReport($id){
+        $timeRecords = TimeRecord::where('user_id', $id)->get();
+        return view('reports.show', ['time_records'=>$timeRecords]);
+    }
+
     public function daily(){
         $timeRecords = TimeRecord::select(
             DB::raw('YEAR(start_time) as year'),

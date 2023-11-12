@@ -13,8 +13,8 @@
         <thead>
             <tr>
                 <th>Serial</th>
-                <th>Recorded by</th>
                 <th>Project Name</th>
+                <th>Recorded by</th>
                 <th>Start Time</th>
                 <th>End Time</th>
                 <th>Total Hour</th>
@@ -25,8 +25,8 @@
         <tbody>
             <tr>
             <th>{{ $loop->index +1 }}</th>
-            <td>{{ $record->user->name }}</td>
             <td>{{ $record->project->name }}</td>
+            <td>{{ $record->user->name }}</td>
             <td>{{ $record->start_time }}</td>
             <td>{{ $record->end_time }}</td>
             <td>{{ $record->total_hours }}</td>
