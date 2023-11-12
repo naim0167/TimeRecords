@@ -22,14 +22,18 @@
             <li class="nav-item">
                 <a class="nav-link text-light" href="/reports">Reports</a>
             </li>
+
         </ul>
         <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link text-light" href="/profile">🛠️{{ Auth::user()->name }}</a>
+            </li>
             <form method="POST" action="{{ route('logout') }}">
                 @csrf
                 <x-responsive-nav-link :href="route('logout')"
                         onclick="event.preventDefault();
                                     this.closest('form').submit();" class="nav-link text-light" >
-                    {{ __('Log Out') }}
+                    {{ __('Log Out') }}❌
                 </x-responsive-nav-link>
             </form>
         </ul>
