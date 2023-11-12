@@ -1,4 +1,5 @@
 @extends('layouts.timerecords')
+
 @section('main')
 
 <div class="container">
@@ -9,7 +10,7 @@
     </div>
     <h1>Entry Record</h1>
 
-    <table class="table table-hover mt-3 text-center">
+    <table class="table table-hover mt-3 text-center" id="myTable">
         <thead>
             <tr>
                 <th>Serial</th>
@@ -21,27 +22,27 @@
                 <th>Action</th>
             </tr>
         </thead>
-        @foreach($time_records as $record)
         <tbody>
+            @foreach($time_records as $record)
             <tr>
-            <th>{{ $loop->index +1 }}</th>
-            <td>{{ $record->project->name }}</td>
-            <td>{{ $record->user->name }}</td>
-            <td>{{ $record->start_time }}</td>
-            <td>{{ $record->end_time }}</td>
-            <td>{{ $record->total_hours }}</td>
-            <td> 
-                <a href="/time_records/{{$record->id}}/show"class="btn btn-success btn-sm">Show</a>
-                <a href="/time_records/{{$record->id}}/edit" class="btn btn-dark btn-sm">Edit</a>
-                <form action="/time_records/{{$record->id}}/delete" method="POST" class="d-inline">
-                @csrf
-                @method('DELETE')
-                    <button class="btn btn-danger btn-sm" type="submit"><i class="fa-solid fa-trash"></i>Delete</button>
-                </form>
-            </td>
+                <td>{{ $loop->index + 1 }}</td>
+                <td>{{ $record->project->name }}</td>
+                <td>{{ $record->user->name }}</td>
+                <td>{{ $record->start_time }}</td>
+                <td>{{ $record->end_time }}</td>
+                <td>{{ $record->total_hours }}</td>
+                <td>
+                    <a href="/time_records/{{$record->id}}/show" class="btn btn-success btn-sm">Show</a>
+                    <a href="/time_records/{{$record->id}}/edit" class="btn btn-dark btn-sm">Edit</a>
+                    <form action="/time_records/{{$record->id}}/delete" method="POST" class="d-inline">
+                        @csrf
+                        @method('DELETE')
+                        <button class="btn btn-danger btn-sm" type="submit"><i class="fa-solid fa-trash"></i>Delete</button>
+                    </form>
+                </td>
             </tr>
+            @endforeach
         </tbody>
-        @endforeach
     </table>
 </div>
 

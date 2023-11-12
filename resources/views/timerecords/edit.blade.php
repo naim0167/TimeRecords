@@ -21,7 +21,6 @@
                     </div>
                     @endif
                 </div>
-
                 <div class="form-group mt-2">
                     <label>Start Time</label>
                     <input type="datetime-local" name ="start_time" class="form-control" value="{{old('start_time', $time_record->start_time)}}">

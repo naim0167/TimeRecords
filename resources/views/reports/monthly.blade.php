@@ -7,7 +7,7 @@
             <a class="btn btn-dark mt-2 " href="/reports/daily">Show By date</a>
         </div>
         <h1>Monthly Reports</h1>
-        <table class="table table-hover mt-3 text-center">
+        <table class="table table-hover mt-3 text-center" id="myTable">
             <thead>
                 <tr>
                     <th>Serial</th>
@@ -17,8 +17,8 @@
                     <th>Year</th>
                 </tr>
             </thead>
-            @foreach($time_records as $record)
             <tbody>
+                @foreach($time_records as $record)
                 <tr>
                     <th>{{ $loop->index +1 }}</th>
                     <td>{{ $record->month}}</td>
@@ -26,8 +26,8 @@
                     <td>{{ $record->hours }}</td>
                     <td>{{ $record->year}}</td>
                 </tr>
+                @endforeach
             </tbody>
-            @endforeach
         </table>
     </div>
 

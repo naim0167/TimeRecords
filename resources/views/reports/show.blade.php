@@ -9,7 +9,7 @@
             <a class="btn btn-dark mt-2 " href="/reports/monthly">Show By Month</a>
         </div>
         <h1>Personal Reports</h1>
-        <table class="table table-hover mt-3 text-center">
+        <table class="table table-hover mt-3 text-center" id="myTable">
             <thead>
                 <tr>
                     <th>Serial</th>
@@ -20,8 +20,8 @@
                     <th>Total Hour</th>
                 </tr>
             </thead>
-            @foreach($time_records as $record)
             <tbody>
+                @foreach($time_records as $record)
                 <tr>
                     <th>{{ $loop->index +1 }}</th>
                     <td>{{ $record->project->name }}</td>
@@ -29,10 +29,9 @@
                     <td>{{ $record->start_time }}</td>
                     <td>{{ $record->end_time }}</td>
                     <td>{{ $record->total_hours }}</td>
-                    <td> 
                 </tr>
+                @endforeach
             </tbody>
-            @endforeach
         </table>
     </div>
 

@@ -8,7 +8,7 @@
     </div>
     <h1>Projects Records</h1>
 
-    <table class="table table-hover mt-3 text-center">
+    <table class="table table-hover mt-3 text-center" id="myTable">
         <thead>
             <tr>
             <th>Serial</th>
@@ -17,16 +17,16 @@
             <th>Work Hour</th>
             </tr>
         </thead>
-        @foreach($projects as $project)
         <tbody>
+            @foreach($projects as $project)
             <tr>
-            <th>{{ $loop->index +1 }}</th>
-            <td>{{ $project->user->name }}</td>
-            <td>{{ $project->name }}</td>
-            <td>{{ $project->workload }}</td>
+                <th>{{ $loop->index +1 }}</th>
+                <td>{{ $project->user->name }}</td>
+                <td>{{ $project->name }}</td>
+                <td>{{ $project->workload }}</td>
             </tr>
+            @endforeach
         </tbody>
-        @endforeach
     </table>
 </div>
 
