@@ -31,15 +31,17 @@ Time tracking is essential for managing your work hours efficiently. This softwa
 
 5. Run the command ``npm run dev``.
 
-6. Open another terminal and run this command ``cp .env.example .env``
+6. Open the project folder and start a new terminal there.
 
-7. Open the .env file and create a database according to the DB_DATABASE name.
+7. Run this command ``cp .env.example .env``
 
-8. Run the command ``php artisan key:generate``.
+8. Open the .env file and create a database according to the DB_DATABASE name.
 
-9. Run the command ``php artisan migarte:fresh``.
+9. Run the command ``php artisan key:generate``.
 
-10. Run the command ``php artisan serve``.
+10. Run the command ``php artisan migarte:fresh``.
+
+11. Run the command ``php artisan serve``.
 
 
 ## Usage

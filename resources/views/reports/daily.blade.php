@@ -4,8 +4,9 @@
     <div class="container">
         
         <div class="text-right">
+            <a class="btn btn-dark mt-2 bg-info" href="/reports/person">Show By Person</a>
+            <a class="btn btn-dark mt-2 bg-danger" href="/reports/">Show By Projects</a>
             <a class="btn btn-dark mt-2 " href="/reports/monthly">Show By Month</a>
-            <a class="btn btn-dark mt-2 " href="/reports/">Show By Projects</a>
         </div>
         <h1>Daily Reports</h1>
         <table class="table table-hover mt-3 text-center">

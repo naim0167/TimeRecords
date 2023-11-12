@@ -4,6 +4,7 @@
     <div class="container">
         
         <div class="text-right">
+            <a class="btn btn-dark mt-2 bg-info" href="/reports/person">Show By Person</a>
             <a class="btn btn-dark mt-2 " href="/reports/daily">Show By date</a>
             <a class="btn btn-dark mt-2 " href="/reports/monthly">Show By Month</a>
         </div>

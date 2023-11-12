@@ -2,8 +2,9 @@
 @section('main')
     <div class="container">
         <div class="text-right">
+            <a class="btn btn-dark mt-2 bg-info" href="/reports/person">Show By Person</a>
+            <a class="btn btn-dark mt-2 bg-danger" href="/reports/">Show By Projects</a>
             <a class="btn btn-dark mt-2 " href="/reports/daily">Show By date</a>
-            <a class="btn btn-dark mt-2 " href="/reports/">Show By Projects</a>
         </div>
         <h1>Monthly Reports</h1>
         <table class="table table-hover mt-3 text-center">
