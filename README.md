@@ -21,6 +21,26 @@ Time tracking is essential for managing your work hours efficiently. This softwa
 - User-friendly interface for easy data entry and retrieval.
 
 ## Installation
+1. Download the zip file or use the clone command.
+
+2. Extract the folder and start a git bash from the folder.
+
+3. Run the command ``composer install``.
+
+4. Run the command ``npm install``.
+
+5. Run the command ``npm run dev``.
+
+6. Open another terminal and run this command ``cp .env.example .env``
+
+7. Open the .env file and create a database according to the DB_DATABASE name.
+
+8. Run the command ``php artisan key:generate``.
+
+9. Run the command ``php artisan migarte:fresh``.
+
+10. Run the command ``php artisan serve``.
+
 
 ## Usage
 
