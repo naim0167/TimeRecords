@@ -31,11 +31,11 @@ class ReportController extends Controller
 
     public function person(){
         $persons = DB::table('time_records')
-            ->select('time_records.user_id', 'users.name')
-            ->join('users', 'time_records.user_id', '=', 'users.id')
-            ->distinct()
-            ->get();
-
+                ->select('user_id', 'users.name', DB::raw('SEC_TO_TIME(SUM(TIME_TO_SEC(TIMEDIFF(end_time, start_time)))) AS total_hours'))
+                ->join('users', 'time_records.user_id', '=', 'users.id')
+                ->groupBy('user_id', 'users.name')
+                ->get();
+        
         return view('reports.person', ['persons'=>$persons]);
     }    
 

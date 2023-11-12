@@ -13,6 +13,7 @@
                 <tr>
                     <th>Serial</th>
                     <th>Username</th>
+                    <th>Total Work</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -21,6 +22,7 @@
                 <tr>
                     <th>{{ $loop->index +1 }}</th>
                     <td>{{ $person->name }}</td>
+                    <td>{{ $person->total_hours }}</td>
                     <td>
                         <a href="/reports/person/{{$person->user_id}}/show"class="btn btn-info btn-sm">Report</a>
                     </td>
