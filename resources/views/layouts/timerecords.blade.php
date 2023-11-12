@@ -79,36 +79,63 @@
 </html>
 
 <script>
-    $(document).ready(function () {
-        $('#myTable').DataTable({
+    function initializeDataTable(tableId, exportColumns) {
+        $('#' + tableId).DataTable({
             dom: 'Bfrtip',
-            buttons: [
-                {
-                    extend: 'copy',
-                    className: 'btn btn-outline-info',
-                    text: '<i class="fas fa-copy"></i> Copy',
-                },
-                {
-                    extend: 'csv',
-                    className: 'btn btn-outline-info',
-                    text: '<i class="fas fa-file-csv"></i> CSV',
-                },
-                {
-                    extend: 'excel',
-                    className: 'btn btn-outline-success',
-                    text: '<i class="fas fa-file-excel"></i> Excel',
-                },
-                {
-                    extend: 'pdf',
-                    className: 'btn btn-outline-danger',
-                    text: '<i class="fas fa-file-pdf"></i> PDF',
-                },
-                {
-                    extend: 'print',
-                    className: 'btn btn-outline-dark',
-                    text: '<i class="fas fa-print"></i> Print',
-                },
-            ],
-        });
+                buttons: [
+                    {
+                        extend: 'copy',
+                        className: 'btn btn-outline-info',
+                        text: '<i class="fas fa-copy"></i> Copy',
+                        exportOptions: {
+                            columns: exportColumns
+                        }
+                    },
+                    {
+                        extend: 'csv',
+                        className: 'btn btn-outline-info',
+                        text: '<i class="fas fa-file-csv"></i> CSV',
+                        exportOptions: {
+                            columns: exportColumns
+                        }
+
+                    },
+                    {
+                        extend: 'excel',
+                        className: 'btn btn-outline-success',
+                        text: '<i class="fas fa-file-excel"></i> Excel',
+                        exportOptions: {
+                            columns: exportColumns
+                        }
+
+                    },
+                    {
+                        extend: 'pdf',
+                        className: 'btn btn-outline-danger',
+                        text: '<i class="fas fa-file-pdf"></i> PDF',
+                        exportOptions: {
+                            columns: exportColumns
+                        }
+                    },
+                    {
+                        extend: 'print',
+                        className: 'btn btn-outline-dark',
+                        text: '<i class="fas fa-print"></i> Print',
+                        exportOptions: {
+                            columns: exportColumns
+                        }
+
+                    },
+                ],
+            });
+        }
+
+    $(document).ready(function() {
+        initializeDataTable('myTable', [0, 1, 2, 3, 4, 5]);
     });
+    $(document).ready(function() {
+        initializeDataTable('personTable', [0, 1, 2]);
+    });
+
 </script>
+

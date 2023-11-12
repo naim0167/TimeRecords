@@ -8,7 +8,7 @@
             <a class="btn btn-dark mt-2 " href="/reports/monthly">Show By Month</a>
         </div>
         <h1>Person Reports</h1>
-        <table class="table table-hover mt-3 text-center" id="myTable">
+        <table class="table table-hover mt-3 text-center" id="personTable">
             <thead>
                 <tr>
                     <th>Serial</th>
