@@ -6,7 +6,6 @@
     <div class="text-right">
         <a class="btn btn-dark mt-2" href="/time_records/create">New Time Record</a>
         <a class="btn btn-dark mt-2" href="/projects/create">New project</a>
-        <a class="btn btn-info mt-2" href="/reports/download">Download Report</a>
     </div>
     <h1>Entry Record</h1>
 

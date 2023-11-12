@@ -99,27 +99,4 @@ class ReportController extends Controller
         return $workingHours;
     }
     
-    public function download(){
-        $entryReportData = TimeRecord::get();
-        $reportFilePath = storage_path('app/report.csv');
-        $handle = fopen($reportFilePath, 'w');
-        fputcsv($handle, ['Serial', 'Project Name', 'Start Time', 'End Time']); 
-        foreach ($entryReportData as $row) {
-            fputcsv($handle, [
-                $row->id, 
-                $row->project->name, 
-                $row->start_time, 
-                $row->end_time
-            ]);
-        }
-        
-        fclose($handle);
-    
-        $headers = [
-            'Content-Type' => 'text/csv',
-            'Content-Disposition' => 'attachment; filename="report.csv"',
-        ];
-    
-        return response()->download($reportFilePath, 'report.csv', $headers);
-    }
 }
