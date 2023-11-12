@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.timerecords')
 @section('main')
 
     <div class="container">

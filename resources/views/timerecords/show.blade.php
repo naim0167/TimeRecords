@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.timerecords')
 @section('main')
 <div class="container">
     <div class="row justify-content-center">
@@ -9,7 +9,7 @@
                 <p> Start Time: <b>{{$time_record->start_time}}</b></p>
                 <p> End Time: <b>{{$time_record->end_time}}</b></p>
                 <p> Work Hour: <b>{{$time_record->total_hours}}</b></p>
-                <a href="/" class="btn btn-dark">Back</a>
+                <a href="/time_records" class="btn btn-dark">Back</a>
         </div>
     </div>
 </div>

@@ -12,6 +12,7 @@ class TimeRecord extends Model
 
     protected $fillable = [
         'project_id',
+        'user_id',
         'start_time',
         'end_time'
     ];
@@ -19,7 +20,10 @@ class TimeRecord extends Model
     public function project(){
         return $this->belongsTo(Project::class);
     }
-
+    
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
     public function getTotalHoursAttribute(){
         $to = Carbon::parse($this->start_time);
         $from = Carbon::parse($this->end_time);

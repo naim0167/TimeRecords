@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Project;
+use App\Models\User;
 use App\Models\TimeRecord;
 use App\Rules\OverlappingTimeRecords;
 use Illuminate\Http\Request;
@@ -16,11 +17,14 @@ class TimeRecordController extends Controller
         return view('timerecords.index', ['time_records'=>$timeRecords]);
     }
 
-    public function create(){
+    public function create(Request $request){
         if(empty(Project::count())){
             return back()->withError('Please add a project first.');
         }
-        return view('timerecords.create', ['projects'=>Project::get()]);
+        return view('timerecords.create', [
+            'projects'=>Project::get(),
+            'user'=>User::where('id', $request->user()->id)->first()
+        ]);
     }
 
     public function store(Request $request){
@@ -29,6 +33,7 @@ class TimeRecordController extends Controller
         ];
         $validatedData = $request->validate([
             'project_id' => ['required', 'integer'],
+            'user_id' => ['required', 'integer'],
             'start_time' =>  ['required', 'date_format:Y-m-d\TH:i'],
             'end_time' => ['required', 'date_format:Y-m-d\TH:i', 'after_or_equal:start_time'],
         ], $messages);
@@ -49,10 +54,12 @@ class TimeRecordController extends Controller
     }
 
     
-    public function edit($id){
+    public function edit(Request $request, $id){
         return view('timerecords.edit', [
             'time_record' =>TimeRecord::where('id', $id)->first(), 
-            'projects'=>Project::get()]);
+            'projects'=>Project::get(),
+            'user'=>User::where('id', $request->user()->id)->first()
+        ]);
     }
     
     public function update(Request $request, $id){
@@ -62,6 +69,7 @@ class TimeRecordController extends Controller
 
         $validatedData = $request->validate([
             'project_id' => ['required', 'integer'],
+            'user_id' => ['required', 'integer'],
             'start_time' =>  ['required', 'date_format:Y-m-d\TH:i'],
             'end_time' => ['required', 'date_format:Y-m-d\TH:i', 'after_or_equal:start_time'],
         ], $messages);

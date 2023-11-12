@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.timerecords')
 @section('main')
 <div class="container">
     <div class="row justify-content-center">
@@ -40,7 +40,11 @@
                     </div>
                     @endif
                 </div>
-                <a href="/" class="btn btn-dark">Back</a>
+                <div class="form-group mt-2">
+                    <h6>username : <label class="bg-info text-white d-inline text-align-right">{{$user->name}}</label></h6>
+                    <input type="hidden" name ="user_id" class="form-control" value="{{$user->id}}">
+                </div>
+                <a href="/time_records" class="btn btn-dark">Back</a>
                 <button class="btn btn-success" type="submit">Submit</button>
                 </form>
             </div>

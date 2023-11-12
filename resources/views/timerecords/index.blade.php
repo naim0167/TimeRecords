@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.timerecords')
 @section('main')
 
 <div class="container">
@@ -13,6 +13,7 @@
         <thead>
             <tr>
                 <th>Serial</th>
+                <th>Recorded by</th>
                 <th>Project Name</th>
                 <th>Start Time</th>
                 <th>End Time</th>
@@ -24,12 +25,13 @@
         <tbody>
             <tr>
             <th>{{ $loop->index +1 }}</th>
+            <td>{{ $record->user->name }}</td>
             <td>{{ $record->project->name }}</td>
             <td>{{ $record->start_time }}</td>
             <td>{{ $record->end_time }}</td>
             <td>{{ $record->total_hours }}</td>
             <td> 
-                <a href="time_records/{{$record->id}}/show"class="btn btn-success btn-sm">Show</a>
+                <a href="/time_records/{{$record->id}}/show"class="btn btn-success btn-sm">Show</a>
                 <a href="/time_records/{{$record->id}}/edit" class="btn btn-dark btn-sm">Edit</a>
                 <form action="/time_records/{{$record->id}}/delete" method="POST" class="d-inline">
                 @csrf
