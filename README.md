@@ -30,7 +30,7 @@ Time tracking is essential for managing your work hours efficiently. This softwa
 7. Run this command ``cp .env.example .env``
 8. Open the .env file and create a database according to the DB_DATABASE name.
 9. Run the command ``php artisan key:generate``.
-10. Start the mysql from Xampp.
+10. Start the mysql and apache server from Xampp.
 11. Run the command ``php artisan migrate:fresh``.
 12. Run the command ``php artisan serve``.
 
