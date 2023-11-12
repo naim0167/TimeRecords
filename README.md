@@ -39,7 +39,7 @@ Time tracking is essential for managing your work hours efficiently. This softwa
 
 9. Run the command ``php artisan key:generate``.
 
-10. Run the command ``php artisan migarte:fresh``.
+10. Run the command ``php artisan migrate:fresh``.
 
 11. Run the command ``php artisan serve``.
 
