@@ -39,6 +39,7 @@ class TimeRecordController extends Controller
         ], $messages);
 
         $validWorkTime = TimeRecord::query()
+        ->where('user_id', $request->user_id)
         ->whereRaw('? between start_time and end_time', [$request->start_time])
         ->count();
 
@@ -76,6 +77,7 @@ class TimeRecordController extends Controller
 
         $validWorkTime = TimeRecord::query()
             ->where('id', '!=' , $id)
+            ->where('user_id', $request->user_id)
             ->whereRaw('? between start_time and end_time', [$request->start_time])
             ->count();
 
