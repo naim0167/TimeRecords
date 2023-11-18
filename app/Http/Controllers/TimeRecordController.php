@@ -5,13 +5,18 @@ namespace App\Http\Controllers;
 use App\Models\Project;
 use App\Models\User;
 use App\Models\TimeRecord;
-use App\Rules\OverlappingTimeRecords;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Redirect;
+use App\Services\TimeRecordService;
 
 class TimeRecordController extends Controller
 {
+    protected $timeRecordService;
+
+    public function __construct(TimeRecordService $timeRecordService)
+    {
+        $this->timeRecordService = $timeRecordService;
+    }
+
     public function index(){
         $timeRecords = TimeRecord::get();
         return view('timerecords.index', ['time_records'=>$timeRecords]);
@@ -28,23 +33,10 @@ class TimeRecordController extends Controller
     }
 
     public function store(Request $request){
-        $messages = [
-            'project_id' => 'Please select a project',
-        ];
-        $validatedData = $request->validate([
-            'project_id' => ['required', 'integer'],
-            'user_id' => ['required', 'integer'],
-            'start_time' =>  ['required', 'date_format:Y-m-d\TH:i'],
-            'end_time' => ['required', 'date_format:Y-m-d\TH:i', 'after_or_equal:start_time'],
-        ], $messages);
+        $validatedData = $this->validateTimeRecord($request);
 
-        $validWorkTime = TimeRecord::query()
-        ->where('user_id', $request->user_id)
-        ->whereRaw('? between start_time and end_time', [$request->start_time])
-        ->count();
-
-        if ($validWorkTime > 0) {
-            return back()->withError('An entry already exist between this hours.');
+        if ($this->timeRecordService->checkValidWorkTime($request->user_id, $request->start_time)) {
+            return back()->withError('An entry already exists between these hours.');
         }
 
         $timeRecord = new TimeRecord;
@@ -52,8 +44,8 @@ class TimeRecordController extends Controller
         $timeRecord->save();
 
         return back()->withSuccess('The Entry has been added!');
-    }
 
+    }
     
     public function edit(Request $request, $id){
         return view('timerecords.edit', [
@@ -64,29 +56,13 @@ class TimeRecordController extends Controller
     }
     
     public function update(Request $request, $id){
-        $messages = [
-            'project_id' => 'Please select a project',
-        ];
+        $validatedData = $this->validateTimeRecord($request);
 
-        $validatedData = $request->validate([
-            'project_id' => ['required', 'integer'],
-            'user_id' => ['required', 'integer'],
-            'start_time' =>  ['required', 'date_format:Y-m-d\TH:i'],
-            'end_time' => ['required', 'date_format:Y-m-d\TH:i', 'after_or_equal:start_time'],
-        ], $messages);
-
-        $validWorkTime = TimeRecord::query()
-            ->where('id', '!=' , $id)
-            ->where('user_id', $request->user_id)
-            ->whereRaw('? between start_time and end_time', [$request->start_time])
-            ->count();
-
-
-        if ($validWorkTime > 0) {
-            return back()->withError('An entry already exist between this hours.');
+        if ($this->timeRecordService->checkValidWorkTimeForUpdate($id, $request->user_id, $request->start_time)) {
+            return back()->withError('An entry already exists between these hours.');
         }
 
-        $timeRecord = TimeRecord::where('id', $id)->first();
+        $timeRecord = TimeRecord::findOrFail($id);
         $timeRecord->fill($validatedData);
         $timeRecord->save();
 
@@ -103,5 +79,17 @@ class TimeRecordController extends Controller
         $timeRecord->delete();
         return back()->withSuccess('Entry Deleted successfully.');
     }
+
+    private function validateTimeRecord(Request $request) {
+        return $request->validate([
+            'project_id' => ['required', 'integer'],
+            'user_id' => ['required', 'integer'],
+            'start_time' =>  ['required', 'date_format:Y-m-d\TH:i'],
+            'end_time' => ['required', 'date_format:Y-m-d\TH:i', 'after_or_equal:start_time'],
+        ], [
+            'project_id.required' => 'Please select a project',
+        ]);
+    }
+
 
 }
